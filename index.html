@@ -100,19 +100,19 @@
         <a href="#casos">Casos</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <div class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <div class="container">
-      <nav class="menu-mobile" id="menuMobile" aria-label="menú móvil">
-        <a href="#que-es">¿Qué es?</a>
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#casos">Casos</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </div>
+    <!-- Botón hamburguesa -->
+    <button id="hamburger" class="hamburger" aria-label="Abrir menú">
+      ☰
+    </button>
+
+    <!-- Menú -->
+    <nav id="menu" class="menu" aria-label="principal">
+      <a href="#que-es">¿Qué es?</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#casos">Casos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
   </header>
 
   <main>
@@ -231,7 +231,6 @@
     <section id="contacto">
       <div class="container">
         <p class="pill">Contacto</p>
-        <h2>¿Listo para llevar tu ciudad al siguiente nivel?</h2>
         <p class="muted">Escribinos directamente a:</p>
         <p style="font-size:1.2rem;font-weight:600">
           📧 <a href="mailto:info@v2x.com.ar">info@v2x.com.ar</a>
@@ -242,7 +241,7 @@
 
   <footer>
     <div class="container small">
-      © <span id="y"></span> V2X Technology · Hecho con ♥ para ciudades y flotas conectadas · <a href="#inicio">Volver arriba</a>
+      © <span id="y"></span> V2X Technology · Hecho con ♥ conectando el futuro · <a href="#inicio">Volver arriba</a>
     </div>
   </footer>
 
@@ -268,3 +267,9 @@
   </script>
 </body>
 </html>
+
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
