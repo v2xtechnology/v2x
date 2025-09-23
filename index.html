@@ -91,7 +91,7 @@
 <body>
   <header>
     <div class="container nav">
-      <div class="brand"><span class="dot" aria-hidden="true"></span> V2X Technology</div>
+      <div class="brand"><span class="dot" aria-hidden="true"><a href="#inicio"> V2X Technology</span></div></a>
       <nav class="menu" aria-label="principal">
         <a href="#que-es">¿Qué es?</a>
         <a href="#como-funciona">Cómo funciona</a>
@@ -251,11 +251,18 @@
 
     // Menú hamburguesa
     const hamburger = document.getElementById('hamburger');
-    const menuMobile = document.getElementById('menuMobile');
+    const menu = document.getElementById('menu');
+
+    // Abrir/cerrar al hacer clic en el botón
     hamburger.addEventListener('click', () => {
-      menuMobile.classList.toggle('open');
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !expanded);
+      menu.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('#menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+      });
     });
   </script>
 </body>
