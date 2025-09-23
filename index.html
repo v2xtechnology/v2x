@@ -4,165 +4,117 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>V2X Technology — Vehicle-to-Everything</title>
-  <meta name="description" content="Página de una sola pieza sobre V2X (Vehicle-to-Everything): qué es, cómo funciona, beneficios, casos de uso y galería con fotos."/>
-  <meta name="color-scheme" content="light dark">
   <style>
-    :root{
-      --bg:#0b1020; --surface:#121935; --muted:#8aa0d1; --text:#e7ecff; --accent:#5eead4; --accent-2:#60a5fa; --card:#0f172a;
+    :root {
+      --bg:#0b1020; --surface:#121935; --muted:#8aa0d1; --text:#e7ecff; 
+      --accent:#5eead4; --accent-2:#60a5fa;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans',sans-serif;background:linear-gradient(180deg,var(--bg),#0b162e 40%, #0a0f1f);color:var(--text)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
     a{color:var(--accent-2);text-decoration:none}
     a:hover{text-decoration:underline}
 
     /* Layout */
-    .container{max-width:1100px;margin:0 auto;padding:0 1.2rem}
-    header{position:sticky;top:0;background:rgba(10,15,31,.65);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid rgba(255,255,255,.08);z-index:40}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.8rem 0}
-    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700;letter-spacing:.3px}
-    .brand .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
-
-    /* Menú */
-    .menu{display:flex;gap:1rem}
-    .menu a{padding:.45rem .7rem;border-radius:999px;white-space:nowrap}
+    .container{max-width:1100px;margin:0 auto;padding:0 1rem}
+    header{position:sticky;top:0;background:rgba(10,15,31,.85);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+    .brand{display:flex;align-items:center;gap:.5rem;font-weight:700}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+    .menu{display:flex;gap:1rem;transition:max-height .3s ease-in-out;overflow:hidden}
+    .menu a{padding:.5rem .8rem;border-radius:6px}
     .menu a:hover{background:rgba(255,255,255,.06)}
 
-    /* Hamburguesa */
+    /* Hamburger */
     .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer}
-    .hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
-    .menu-mobile{display:none;flex-direction:column;gap:.8rem;padding:1rem 0}
-    .menu-mobile a{padding:.6rem 1rem;border-radius:8px;background:rgba(255,255,255,.05)}
-    .menu-mobile a:hover{background:rgba(255,255,255,.1)}
+    .hamburger span{width:25px;height:3px;background:var(--text);border-radius:2px}
 
     /* Hero */
-    .hero{position:relative;isolation:isolate}
-    .hero::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1900&auto=format&fit=crop') center/cover no-repeat;opacity:.28;z-index:-1}
-    .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;min-height:72vh;padding:4rem 0}
-    .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.3rem .65rem;border-radius:999px;background:rgba(94,234,212,.14);border:1px solid rgba(94,234,212,.35);color:var(--accent)}
-    h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.06;margin:.6rem 0;word-break:break-word}
-    p.lead{color:var(--muted);font-size:1.1rem}
-    .cta{display:flex;gap:.8rem;margin-top:1.2rem;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1rem;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(94,234,212,.2),rgba(96,165,250,.2));color:var(--text);font-weight:600}
-    .btn.alt{background:transparent}
+    .hero{padding:4rem 0;text-align:center;background:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1900&auto=format&fit=crop') center/cover no-repeat;position:relative}
+    .hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55)}
+    .hero > *{position:relative;z-index:1}
+    .hero h1{font-size:clamp(2rem,6vw,3rem);margin-bottom:1rem}
+    .hero p{color:var(--muted);font-size:1.2rem}
 
     /* Sections */
-    section{padding:4rem 0;border-top:1px solid rgba(255,255,255,.06)}
-    h2{font-size:clamp(1.6rem,3.6vw,2.2rem);margin:0 0 1rem}
+    section{padding:3rem 0;border-top:1px solid rgba(255,255,255,.08)}
+    h2{font-size:1.8rem;margin-bottom:1rem}
     .muted{color:var(--muted)}
 
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:1rem}
-    .card h3{margin-top:.2rem}
-
-    .pill{display:inline-block;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(255,255,255,.14);color:var(--muted);font-size:.85rem}
-
-    .list{display:grid;gap:.6rem;margin:1rem 0}
-    .list li{display:flex;gap:.6rem;align-items:flex-start}
-    .icon{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(94,234,212,.24),rgba(96,165,250,.24));border:1px solid rgba(255,255,255,.14)}
-
-    /* Gallery */
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem}
-    .gallery img{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.12)}
-
     /* Footer */
-    footer{padding:2.5rem 0;border-top:1px solid rgba(255,255,255,.06);color:var(--muted)}
-    .small{font-size:.9rem;text-align:center}
+    footer{padding:2rem 0;text-align:center;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
 
     /* Responsive */
-    @media (max-width:900px){
-      .hero .wrap{grid-template-columns:1fr;min-height:auto;padding:2.5rem 0}
-      .grid-3{grid-template-columns:1fr}
-      .grid-2{grid-template-columns:1fr}
-      .gallery{grid-template-columns:1fr 1fr}
-      .cta{justify-content:center}
-    }
-    @media (max-width:600px){
-      .menu{display:none}
+    @media(max-width:768px){
+      .menu{flex-direction:column;max-height:0;width:100%}
+      .menu.active{max-height:500px} /* menú abierto */
       .hamburger{display:flex}
-      .menu-mobile{display:none}
-      .gallery{grid-template-columns:1fr}
-      section{padding:3rem 0}
     }
-    .menu-mobile.open{display:flex}
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div class="brand"><span class="dot" aria-hidden="true"></span> V2X Technology</div>
-      <nav class="menu" aria-label="principal">
-        <a href="#que-es">¿Qué es?</a>
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#casos">Casos</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-      <div class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <div class="container">
-      <nav class="menu-mobile" id="menuMobile" aria-label="menú móvil">
-        <a href="#que-es">¿Qué es?</a>
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#casos">Casos</a>
-        <a href="#contacto">Contacto</a>
+      <div class="brand"><div class="dot"></div> V2X</div>
+      <nav>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="menu" id="menu">
+          <a href="#que-es">Qué es V2X</a>
+          <a href="#beneficios">Beneficios</a>
+          <a href="#casos">Casos de uso</a>
+          <a href="#galeria">Galería</a>
+          <a href="#contacto">Contacto</a>
+        </div>
       </nav>
     </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="inicio">
-      <div class="container wrap">
-        <div>
-          <span class="badge" aria-label="etiqueta">Vehicle-to-Everything</span>
-          <h1>V2X Technology</h1>
-          <h2>Conectando el futuro</h2>
-          <p class="lead">V2X (Vehicle-to-Everything) es una tecnología de comunicación que permite que los vehículos se conecten de manera inteligente con su entorno: otros autos, peatones, infraestructuras, redes y más.</p>
-          <div class="cta">
-            <a class="btn" href="#contacto">Contacto</a>
-            <a class="btn alt" href="#que-es">Saber más</a>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section class="hero">
+    <div class="container">
+      <h1>Conectividad V2X</h1>
+      <p>La tecnología Vehicle-to-Everything que transforma la movilidad inteligente.</p>
+    </div>
+  </section>
 
-    <!-- ... (las secciones intermedias quedan igual que antes) ... -->
+  <section id="que-es" class="container">
+    <h2>¿Qué es V2X?</h2>
+    <p class="muted">Vehicle-to-Everything (V2X) conecta vehículos con otros autos, infraestructura, peatones y la red. Mejora la seguridad, la eficiencia y la experiencia de conducción.</p>
+  </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto">
-      <div class="container">
-        <p class="pill">Contacto</p>
-        <h2>¿Listo para llevar tu ciudad al siguiente nivel?</h2>
-        <p class="muted">Escribinos directamente a:</p>
-        <p style="font-size:1.2rem;font-weight:600">
-          📧 <a href="mailto:info@v2x.com.ar">info@v2x.com.ar</a>
-        </p>
-      </div>
-    </section>
-  </main>
+  <section id="beneficios" class="container">
+    <h2>Beneficios</h2>
+    <ul>
+      <li>Mayor seguridad vial</li>
+      <li>Menor congestión y tráfico más fluido</li>
+      <li>Conducción autónoma más eficiente</li>
+    </ul>
+  </section>
+
+  <section id="casos" class="container">
+    <h2>Casos de uso</h2>
+    <p class="muted">V2X se aplica en sistemas de aviso de colisión, comunicación con semáforos inteligentes, asistencia a peatones y gestión de tráfico urbano.</p>
+  </section>
+
+  <section id="galeria" class="container">
+    <h2>Galería</h2>
+    <p class="muted">Imágenes de ciudades y vehículos conectados con tecnología V2X.</p>
+  </section>
+
+  <section id="contacto" class="container">
+    <h2>Contacto</h2>
+    <p>Escribinos a <a href="mailto:info@v2x.com.ar">info@v2x.com.ar</a></p>
+  </section>
 
   <footer>
-    <div class="container small">
-      © <span id="y"></span> V2X Technology · Hecho con ♥ para ciudades y flotas conectadas · <a href="#inicio">Volver arriba</a>
-    </div>
+    <p>© 2025 V2X Technology</p>
   </footer>
 
   <script>
-    // Año automático en el footer
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Menú hamburguesa
     const hamburger = document.getElementById('hamburger');
-    const menuMobile = document.getElementById('menuMobile');
+    const menu = document.getElementById('menu');
     hamburger.addEventListener('click', () => {
-      menuMobile.classList.toggle('open');
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !expanded);
+      menu.classList.toggle('active');
     });
   </script>
 </body>
