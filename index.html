@@ -251,18 +251,11 @@
 
     // Menú hamburguesa
     const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('menu');
-
-    // Abrir/cerrar al hacer clic en el botón
+    const menuMobile = document.getElementById('menuMobile');
     hamburger.addEventListener('click', () => {
-      menu.classList.toggle('active');
-    });
-
-    // Cerrar menú al hacer clic en un enlace
-    document.querySelectorAll('#menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        menu.classList.remove('active');
-      });
+      menuMobile.classList.toggle('open');
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !expanded);
     });
   </script>
 </body>
