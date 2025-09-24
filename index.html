@@ -245,6 +245,39 @@
     </div>
   </footer>
 
+  <!-- Banner de Cookies -->
+  <div id="cookie-banner" style="
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #2b2b2b;
+    color: #fff;
+    padding: 15px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+  ">
+    <span>
+      Usamos cookies para mejorar tu experiencia en <strong>v2x.com.ar</strong> y mostrarte anuncios personalizados.
+      <a href="/politica-privacidad" style="color: #4da6ff; text-decoration: underline;">Más info</a>.
+    </span>
+    <button id="accept-cookies" style="
+      margin-left: 15px;
+      background: #4da6ff;
+      border: none;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    ">
+      Aceptar
+    </button>
+  </div>
+  
   <script>
     // Año automático en el footer
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -257,6 +290,21 @@
       const expanded = hamburger.getAttribute('aria-expanded') === 'true';
       hamburger.setAttribute('aria-expanded', !expanded);
     });
+
+    // Mostrar/Ocultar banner según aceptación
+    document.addEventListener("DOMContentLoaded", function () {
+    const banner = document.getElementById("cookie-banner");
+    const btn = document.getElementById("accept-cookies");
+
+    if (localStorage.getItem("cookies-accepted")) {
+      banner.style.display = "none";
+    }
+
+    btn.addEventListener("click", function () {
+      localStorage.setItem("cookies-accepted", true);
+      banner.style.display = "none";
+    });
+  });
   </script>
 </body>
 </html>
