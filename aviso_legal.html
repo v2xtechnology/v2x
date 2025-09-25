@@ -17,3 +17,226 @@
 
 <h2>Limitación de responsabilidad</h2>
 <p>No garantizamos la disponibilidad continua del sitio ni la ausencia de errores en los contenidos. El uso de este sitio se realiza bajo tu propia responsabilidad.</p>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>V2X Technology — Vehicle-to-Everything</title>
+  <link rel="icon" type="image/png" href="images/favicon.ico">
+  <meta name="description" content="Página sobre V2X (Vehicle-to-Everything)"/>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root{
+      --bg:#0b1020; --surface:#121935; --muted:#8aa0d1; --text:#e7ecff; --accent:#5eead4; --accent-2:#60a5fa; --card:#0f172a;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans',sans-serif;background:linear-gradient(180deg,var(--bg),#0b162e 40%, #0a0f1f);color:var(--text)}
+    a{color:var(--accent-2);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:0 1.2rem}
+    header{position:sticky;top:0;background:rgba(10,15,31,.65);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid rgba(255,255,255,.08);z-index:40}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.8rem 0}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700;letter-spacing:.3px}
+    .brand .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+
+    /* Menú */
+    .menu{display:flex;gap:1rem}
+    .menu a{padding:.45rem .7rem;border-radius:999px;white-space:nowrap}
+    .menu a:hover{background:rgba(255,255,255,.06)}
+
+    /* Hamburguesa */
+    .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer}
+    .hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+    .menu-mobile{display:none;flex-direction:column;gap:.8rem;padding:1rem 0}
+    .menu-mobile a{padding:.6rem 1rem;border-radius:8px;background:rgba(255,255,255,.05)}
+    .menu-mobile a:hover{background:rgba(255,255,255,.1)}
+
+    /* Hero */
+    .hero{position:relative;isolation:isolate}
+    .hero::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1900&auto=format&fit=crop') center/cover no-repeat;opacity:.28;z-index:-1}
+    .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;min-height:72vh;padding:4rem 0}
+    .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.3rem .65rem;border-radius:999px;background:rgba(94,234,212,.14);border:1px solid rgba(94,234,212,.35);color:var(--accent)}
+    h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.06;margin:.6rem 0;word-break:break-word}
+    p.lead{color:var(--muted);font-size:1.1rem}
+    .cta{display:flex;gap:.8rem;margin-top:1.2rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1rem;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(94,234,212,.2),rgba(96,165,250,.2));color:var(--text);font-weight:600}
+    .btn.alt{background:transparent}
+
+    /* Sections */
+    section{padding:4rem 0;border-top:1px solid rgba(255,255,255,.06)}
+    h2{font-size:clamp(1.6rem,3.6vw,2.2rem);margin:0 0 1rem}
+    .muted{color:var(--muted)}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:1rem}
+    .card h3{margin-top:.2rem}
+
+    .pill{display:inline-block;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(255,255,255,.14);color:var(--muted);font-size:.85rem}
+
+    .list{display:grid;gap:.6rem;margin:1rem 0}
+    .list li{display:flex;gap:.6rem;align-items:flex-start}
+    .icon{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(94,234,212,.24),rgba(96,165,250,.24));border:1px solid rgba(255,255,255,.14)}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1rem}
+    .gallery img{width:100%;height:220px;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.12)}
+
+    /* Footer */
+    footer{padding:2.5rem 0;border-top:1px solid rgba(255,255,255,.06);color:var(--muted)}
+    .small{font-size:.9rem;text-align:center}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero .wrap{grid-template-columns:1fr;min-height:auto;padding:2.5rem 0}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+      .cta{justify-content:center}
+    }
+    @media (max-width:600px){
+      .menu{display:none}
+      .hamburger{display:flex}
+      .menu-mobile{display:none}
+      .gallery{grid-template-columns:1fr}
+      section{padding:3rem 0}
+    }
+    .menu-mobile.open{display:flex}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot" aria-hidden="true"></span><a href="index.html#inicio"> V2X Technology</div></a>
+      <nav class="menu" aria-label="principal">
+        <a href="index.html#que-es">¿Qué es?</a>
+        <a href="index.html#como-funciona">Cómo funciona</a>
+        <a href="index.html#beneficios">Beneficios</a>
+        <a href="index.html#casos">Casos</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <div class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="container">
+      <nav class="menu-mobile" id="menuMobile" aria-label="menú móvil">
+        <a href="index.html#que-es">¿Qué es?</a>
+        <a href="index.html#como-funciona">Cómo funciona</a>
+        <a href="index.html#beneficios">Beneficios</a>
+        <a href="index.html#casos">Casos</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- LEGAL -->
+    <section id="legal">
+      <div class="container">
+        <p class="pill">Importante</p>
+        <h2>Aviso Legal</h2>
+        <div class="grid">
+
+<p>El sitio web V2X.com.ar es propiedad de [HENIN].</p>
+
+<h2>Condiciones de uso</h2>
+<p>El acceso y uso de este sitio implican la aceptación de las siguientes condiciones:</p>
+<ul>
+  <li>El contenido publicado tiene carácter informativo y no constituye asesoramiento profesional.</li>
+  <li>El uso de la información es responsabilidad exclusiva del usuario.</li>
+  <li>Nos reservamos el derecho de modificar, actualizar o eliminar contenidos sin previo aviso.</li>
+</ul>
+
+<h2>Propiedad intelectual</h2>
+<p>Todos los contenidos de este sitio (textos, imágenes, logotipos, etc.) son propiedad de sus respectivos autores. Queda prohibida su reproducción sin autorización.</p>
+
+<h2>Enlaces externos</h2>
+<p>Este sitio puede incluir enlaces a páginas de terceros. No nos responsabilizamos por los contenidos ni las políticas de privacidad de dichos sitios.</p>
+
+<h2>Limitación de responsabilidad</h2>
+<p>No garantizamos la disponibilidad continua del sitio ni la ausencia de errores en los contenidos. El uso de este sitio se realiza bajo tu propia responsabilidad.</p>
+
+        </div>
+      </div>
+    </section>
+
+  <footer>
+    <div class="container small">
+     <span id="x"></span> <a href="politica_privacidad.html">Políticas de Provacidad</a> | <a href="aviso_legal.html">Aviso Legal</a>
+    </div>
+    <br>
+    <div class="container small">
+      © <span id="y"></span> V2X Technology · Hecho con ♥ conectando el futuro · <a href="index.html#inicio">Volver</a>
+    </div>
+  </footer>
+
+  <!-- Banner de Cookies -->
+  <div id="cookie-banner" style="
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #2b2b2b;
+    color: #fff;
+    padding: 15px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+  ">
+    <span>
+      Usamos cookies para mejorar tu experiencia en <strong>v2x.com.ar</strong> y mostrarte anuncios personalizados.
+      <a href="politica_privacidad.html" style="color: #4da6ff; text-decoration: underline;">Más info</a>.
+    </span>
+    <button id="accept-cookies" style="
+      margin-left: 15px;
+      background: #4da6ff;
+      border: none;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    ">
+      Aceptar
+    </button>
+  </div>
+  
+  <script>
+    // Año automático en el footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Menú hamburguesa
+    const hamburger = document.getElementById('hamburger');
+    const menuMobile = document.getElementById('menuMobile');
+    hamburger.addEventListener('click', () => {
+      menuMobile.classList.toggle('open');
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !expanded);
+    });
+
+    // Mostrar/Ocultar banner según aceptación
+    document.addEventListener("DOMContentLoaded", function () {
+    const banner = document.getElementById("cookie-banner");
+    const btn = document.getElementById("accept-cookies");
+
+    if (localStorage.getItem("cookies-accepted")) {
+      banner.style.display = "none";
+    }
+
+    btn.addEventListener("click", function () {
+      localStorage.setItem("cookies-accepted", true);
+      banner.style.display = "none";
+    });
+  });
+  </script>
+</body>
+</html>
