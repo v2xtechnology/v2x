@@ -1,6 +1,4 @@
 User-agent: *
 Disallow:
 
-Content-signal: search=yes,ai-train=no
-
 Sitemap: https://v2x.com.ar/sitemap.xml
