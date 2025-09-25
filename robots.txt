@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://v2x.com.ar/sitemap.xml
